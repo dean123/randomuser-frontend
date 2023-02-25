@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { User } from '../../models/user'
 import { TrashIcon } from '../../icons/trash';
 import styles from './teaser.module.css';
@@ -11,19 +11,21 @@ interface TeaserProps {
 export const Teaser = ({ user, onRemove }: TeaserProps) => {
   const [showMore, setShowMore] = useState<boolean>(false);
 
+  const fullName = useCallback(() => {
+    return `${user.name.first} ${user.name.last}`;
+  }, [user])
+
   return (
     <div className={`${styles.teaser} ${showMore ? styles.more : ''}`}>
       <img
         className={styles.image}
         src={user.picture.large}
-        alt={`Portrait of ${user.name.first} ${user.name.last}.`}
+        alt={`Portrait of ${fullName()}.`}
         width={128}
         height={128}
       />
       <div className={styles.info}>
-        <h2 className={styles.name}>
-          {user.name.first} {user.name.last}
-        </h2>
+        <h2 className={styles.name}>{ fullName() }</h2>
         <div className={styles.wrap}>
           <ul className={styles.optional}>
             <li>Gender: {user.gender}</li>

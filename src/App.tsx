@@ -41,7 +41,7 @@ function App() {
       <List>
         {users.map((item: User, index: number) =>
           <Teaser
-            key={item.cell}
+            key={item.phone}
             user={item}
             onRemove={() => handleRemove(index)}
           />
