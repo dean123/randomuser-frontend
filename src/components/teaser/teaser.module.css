@@ -1,0 +1,14 @@
+.teaser {
+  border: 1px solid lightgray;
+  display: inline-block;
+  flex: 1 1 250px;
+}
+
+.image {
+  display: block;
+  margin: 0 auto;
+}
+
+.info {
+  padding: 0.5rem;
+}

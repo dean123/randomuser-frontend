@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useCallback, useEffect, useState } from 'react';
+import { List } from './components/list/list';
+import { Teaser } from './components/teaser/teaser';
+import getRandomUsers from './lib/randomuser';
+import { User } from './models/user';
 
 function App() {
+  const [users, setUsers] = useState<User[]>([]);
+
+  const loadUsers = useCallback(async () => {
+    const data = await getRandomUsers();
+    setUsers(data);
+  }, [])
+
+  useEffect(() => {
+    loadUsers();
+  }, [loadUsers])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <List>
+      {users.map((item: User) =>
+        <Teaser
+          key={item.cell}
+          user={item}
+        />
+      )}
+    </List>
   );
 }
 
