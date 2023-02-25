@@ -16,7 +16,10 @@ export const Teaser = ({ user, onRemove }: TeaserProps) => {
   }, [user])
 
   return (
-    <div className={`${styles.teaser} ${showMore ? styles.more : ''}`}>
+    <div
+      className={`${styles.teaser} ${showMore ? styles.more : ''}`}
+      data-testid='teaser'
+    >
       <img
         className={styles.image}
         src={user.picture.large}
@@ -46,6 +49,7 @@ export const Teaser = ({ user, onRemove }: TeaserProps) => {
         className={styles.remove}
         aria-label='Remove user'
         onClick={onRemove}
+        data-testid='remove-user'
       >
         <TrashIcon />
       </button>

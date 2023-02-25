@@ -29,10 +29,10 @@ export function getUser(): User {
   };
 }
 
-export function getUsers(amount: number): User[] {
+export function getUsers(amount: number): Promise<User[]> {
   const users = [];
   for (let i = 0; i < amount; i++) {
     users.push(getUser());
   }
-  return users;
+  return Promise.resolve(users);
 }
