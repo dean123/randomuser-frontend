@@ -17,7 +17,9 @@ export const Teaser = ({ user }: TeaserProps) => {
         height={128}
       />
       <div className={styles.info}>
-        <span>{user.name.first}</span>
+        <h2 className={styles.name}>
+          {user.name.first} {user.name.last}
+        </h2>
       </div>
     </div>
   );
