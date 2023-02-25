@@ -3,6 +3,7 @@
   display: inline-block;
   flex: 1 1 250px;
   padding: 1.5rem 1rem;
+  position: relative;
 }
 
 .image {
@@ -17,4 +18,11 @@
 .name {
   margin: 0;
   text-align: center;
+}
+
+.remove {
+  padding: 0.5rem 0.75rem;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

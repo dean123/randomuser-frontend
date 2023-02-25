@@ -18,6 +18,13 @@ function App() {
     setAddAmount((current: number) => current + 1);
   }, [loadUsers, addAmount])
 
+  const handleRemove = useCallback((index: number) => {
+    setUsers((current: User[]) => {
+      current.splice(index, 1);
+      return [...current];
+    });
+  }, [])
+
   useEffect(() => {
     loadUsers(20);
   }, [loadUsers])
@@ -28,10 +35,11 @@ function App() {
         <h1>Displaying {users.length} random users</h1>
       </section>
       <List>
-        {users.map((item: User) =>
+        {users.map((item: User, index: number) =>
           <Teaser
             key={item.cell}
             user={item}
+            onRemove={() => handleRemove(index)}
           />
         )}
       </List>

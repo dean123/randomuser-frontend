@@ -1,12 +1,14 @@
+import React from 'react';
 import { User } from '../../models/user'
-
+import { TrashIcon } from '../../icons/trash';
 import styles from './teaser.module.css';
 
 interface TeaserProps {
   user: User;
+  onRemove: () => void;
 }
 
-export const Teaser = ({ user }: TeaserProps) => {
+export const Teaser = ({ user, onRemove }: TeaserProps) => {
   return (
     <div className={styles.teaser}>
       <img
@@ -21,6 +23,13 @@ export const Teaser = ({ user }: TeaserProps) => {
           {user.name.first} {user.name.last}
         </h2>
       </div>
+      <button
+        className={styles.remove}
+        aria-label='Remove user'
+        onClick={onRemove}
+      >
+        <TrashIcon />
+      </button>
     </div>
   );
 }
