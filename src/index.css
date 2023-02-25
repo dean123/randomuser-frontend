@@ -12,14 +12,20 @@ code {
     monospace;
 }
 
-section {
-  padding: 2rem 1rem;
-}
-
 button {
   background-color: white;
   border: 2px solid black;
   cursor: pointer;
   font-size: large;
   padding: 0.5rem 1rem;
+}
+
+section {
+  padding: 2rem 1rem;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }

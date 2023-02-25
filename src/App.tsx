@@ -8,9 +8,13 @@ function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [addAmount, setAddAmount] = useState<number>(1);
 
-  const loadUsers = useCallback(async (amount: number) => {
+  const loadUsers = useCallback(async (amount: number, renew = false) => {
     const data = await getRandomUsers(amount);
-    setUsers((current: User[]) => [...current, ...data]);
+    if (renew) {
+      setUsers(data);
+    } else {
+      setUsers((current: User[]) => [...current, ...data]);
+    }
   }, [])
 
   const handleAdd = useCallback(() => {
@@ -43,9 +47,12 @@ function App() {
           />
         )}
       </List>
-      <section>
+      <section className='actions'>
         <button onClick={handleAdd}>
           Add {addAmount} More
+        </button>
+        <button onClick={() => loadUsers(20, true)}>
+          Renew Users
         </button>
       </section>
     </main>
